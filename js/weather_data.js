@@ -15,10 +15,21 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(map);
 
 //Displays the coordinates from where you click
-map.on('click', function (click){
+map.on('click', function (click) {
     const cord = {
         long: click.latlng.lng,
         lat: click.latlng.lat
     }
-    console.log(cord);
+    haeSaaTiedot(cord);
 });
+
+function haeSaaTiedot(cord) {
+    const url = `api.openweathermap.org/data/2.5/weather?lat=${cord.lat}&lon=${cord.long}&appid=${key}`
+    console.log(url);
+    fetch(url)
+        .then(function (rsp) {
+            return rsp.json();
+        }).then(function (tiedot) {
+            console.log(tiedot);
+    });
+}
