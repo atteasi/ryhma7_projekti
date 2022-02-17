@@ -2,7 +2,7 @@
 //A Key for the Weather API
 const key = 'aeeb6bc394d495acdd9b6b0eb06f5e40';
 
-var map = L.map('map').setView([60.31181787547431, 25.030374526977543], 13);
+const map = L.map('map').setView([60.31181787547431, 25.030374526977543], 13);
 
 //Sets up the map
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -17,19 +17,31 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 //Displays the coordinates from where you click
 map.on('click', function (click) {
     const cord = {
-        long: click.latlng.lng,
-        lat: click.latlng.lat
+        long: click.latlng.lng.toString(),
+        lat: click.latlng.lat.toString()
     }
     haeSaaTiedot(cord);
 });
 
 function haeSaaTiedot(cord) {
-    const url = `api.openweathermap.org/data/2.5/weather?lat=${cord.lat}&lon=${cord.long}&appid=${key}`
-    console.log(url);
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${cord.lat}&lon=${cord.long}&appid=${key}&lang=fi&units=metric`
     fetch(url)
         .then(function (rsp) {
             return rsp.json();
         }).then(function (tiedot) {
             console.log(tiedot);
+            listaaSaaTietoja(tiedot);
     });
+}
+//Logs the weather info into console
+function listaaSaaTietoja(info){
+    //The Country you Clicked on
+    console.log(info.sys.country);
+    //The City you Clicked on
+    console.log(info.name);
+    //The Temperature from where you Clicked on
+    console.log(`Lämpötila: ${info.main.temp}C°`);
+    console.log(`Lämpötila tuntuu: ${info.main.feels_like}C°`);
+    console.log(`Tuulen nopeus: ${info.wind.speed}m/s`);
+    console.log(info.weather[0].description);
 }
