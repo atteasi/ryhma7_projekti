@@ -41,7 +41,10 @@ function listaaSaaTietoja(info){
     console.log(info.name);
     //The Temperature from where you Clicked on
     console.log(`Lämpötila: ${info.main.temp}C°`);
+    //What the Temperature Feels Like
     console.log(`Lämpötila tuntuu: ${info.main.feels_like}C°`);
+    //Wind Speed
     console.log(`Tuulen nopeus: ${info.wind.speed}m/s`);
+    //The Current Weather Condition
     console.log(info.weather[0].description);
 }
