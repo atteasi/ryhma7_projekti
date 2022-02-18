@@ -1,10 +1,43 @@
 #map {
     width: 100%;
-    height: 90vh;
+    height: 85vh;
 }
-h1{
+header{
     color: white;
     background: black;
-    padding: 20px;
+    padding: 10px;
     margin: 0px;
+}
+footer{
+    font-size: 30px;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+.hidden{
+     display: none;
+}
+
+.visible{
+    display: block;
+}
+article{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 30%;
+    background: floralwhite;
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-bottom: 0px;
+}
+#kaupunki{
+    text-align: center;
+}
+#lampo{
+    margin-left: 30px;
+}
+#desc{
+    margin-left: 30px;
 }
