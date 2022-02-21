@@ -16,7 +16,11 @@ function listaaSaaTietoja(info) {
     infoja.classList.replace('hidden', 'visible');
     document.getElementById('kaupunki').innerHTML = info.name;
     document.getElementById('lampo').innerHTML = `Lämpötila: ${info.main.temp}C°`;
-    document.getElementById('desc').innerHTML = `Tämän hetken säätilanne: ${info.weather[0].description}`
+    document.getElementById('tuntuu').innerHTML = `Tuntuu: ${info.main.feels_like}C°`;
+    const tilanne = info.weather[0].description;
+    document.getElementById('desc').innerHTML = `Tämän hetken säätilanne: ${tilanne.charAt(0).toUpperCase() + tilanne.slice(1)}`;
+    const img = document.getElementById('img');
+    img.src = `http://openweathermap.org/img/wn/${info.weather[0].icon}@2x.png`;
     //The Country you Clicked on
     console.log(info.sys.country);
     //The City you Clicked on

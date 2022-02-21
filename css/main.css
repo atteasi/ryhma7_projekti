@@ -22,6 +22,7 @@ footer{
     display: block;
 }
 article{
+    position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 30%;
     background: floralwhite;
@@ -40,4 +41,14 @@ main{
 }
 #desc{
     margin-left: 30px;
+}
+#tuntuu{
+    margin-left: 30px;
+}
+#img{
+    max-width: 40%;
+    position: absolute;
+    right: 5px;
+    top: 30px;
+    align-content: end;
 }
