@@ -15,10 +15,10 @@ function listaaPaivanTietoja(info) {
     kartta.style.width = '70%';
     infoja.classList.replace('hidden', 'visible');
     document.getElementById('kaupunki').innerHTML = info.name;
-    document.getElementById('lampo').innerHTML = `Lämpötila: ${info.main.temp}C°`;
-    document.getElementById('tuntuu').innerHTML = `Tuntuu: ${info.main.feels_like}C°`;
+    document.getElementById('lampo').innerHTML = `<strong>Lämpötila:</strong> ${info.main.temp.toFixed(0)}C°`;
+    document.getElementById('tuntuu').innerHTML = `<strong>Tuntuu:</strong> ${info.main.feels_like.toFixed(0)}C°`;
     const tilanne = info.weather[0].description;
-    document.getElementById('desc').innerHTML = `Tämän hetken säätilanne: ${tilanne.charAt(0).toUpperCase() + tilanne.slice(1)}`;
+    document.getElementById('desc').innerHTML = `<strong>Tämän hetken säätilanne:</strong> ${tilanne.charAt(0).toUpperCase() + tilanne.slice(1)}`;
     const img = document.getElementById('img');
     img.src = `http://openweathermap.org/img/wn/${info.weather[0].icon}@2x.png`;
     map.flyTo([info.coord.lat, info.coord.lon], 11);
@@ -37,5 +37,30 @@ function haeViikonTiedot (cord){
             return rsp.json();
         }).then(function (tiedot) {
         console.log(tiedot);
+        listaaViikonTiedot(tiedot);
     });
+}
+//Function to Display simple info for the next seven days
+function listaaViikonTiedot(info) {
+    const paiva = new Date();
+    let day = paiva.getDate();
+    const month = paiva.getMonth()+1;
+    let mmyy = `${paiva.getMonth() + 1}.${(paiva.getFullYear())}`
+    const tasan_paivia = [4,9,11];
+    const pariton_paivia = [1,3,5,7,8,10,12];
+    const lista = document.getElementById('lista');
+    if(lista !== null){
+        lista.innerHTML = '';
+    }
+    for(let i = 1;i < info.daily.length;i++){
+        day++;
+        if(day === 29 && month === 2) {
+            day = 1;
+            mmyy = `${paiva.getMonth() + 2}.${paiva.getFullYear()}`
+        }
+        const li = document.createElement('li');
+        const date = document.createTextNode(`${day}.${mmyy} \n ${info.daily[i].feels_like.day.toFixed(0).toString()}`);
+        li.appendChild(date);
+        lista.appendChild(li);
+    }
 }
