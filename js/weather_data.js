@@ -14,6 +14,9 @@ function listaaPaivanTietoja(info) {
     //Makes the map a little smaller and makes the area where the
     kartta.style.width = '70%';
     infoja.classList.replace('hidden', 'visible');
+    if (avauksia < 0){
+        but.classList.replace('visible', 'hidden');
+    }
     document.getElementById('kaupunki').innerHTML = info.name;
     document.getElementById('lampo').innerHTML = `<strong>Lämpötila:</strong> ${info.main.temp.toFixed(0)}C°`;
     document.getElementById('tuntuu').innerHTML = `<strong>Tuntuu:</strong> ${info.main.feels_like.toFixed(0)}C°`;
@@ -27,7 +30,7 @@ function listaaPaivanTietoja(info) {
 document.getElementById('nappi').addEventListener('click', function (){
    kartta.style.width = '100%';
    infoja.classList.replace('visible', 'hidden');
-
+   but.classList.replace('hidden', 'visible');
 });
 //Function that fetches the Weather data for the next week from the OpenWeatherMap API
 function haeViikonTiedot (cord){
