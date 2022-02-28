@@ -11,10 +11,10 @@
 <body>
 <header>
     <h1>Lomaloikoilijat</h1>
+    <button id="avaa" type="button" class="hidden">Avaa Sivuvalikko</button>
 </header>
 <main>
     <div id="map"></div>
-    <button id="avaa" type="button" class="hidden">Avaa Sivuvalikko</button>
     <article class="hidden">
         <h1 id="kaupunki"></h1>
         <p id="lampo"></p>
@@ -26,6 +26,10 @@
             <button id="nappi" type="button">Piilota Sivuvalikko</button>
         </footer>
     </article>
+    <div id="modal" class="modal">
+        <article class="modal-content" id="content">
+        </article>
+    </div>
 </main>
 <footer>
     <h6>Ryhmän 7 Projekti</h6>
