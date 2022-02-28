@@ -57,3 +57,10 @@ main{
     right: 38%;
     bottom: 50px;
 }
+ul{
+    position: relative;
+}
+li img{
+    position: absolute;
+    right: 10px;
+}

@@ -31,7 +31,7 @@ document.getElementById('nappi').addEventListener('click', function (){
 });
 //Function that fetches the Weather data for the next week from the OpenWeatherMap API
 function haeViikonTiedot (cord){
-    const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${cord.lat}&lon=${cord.long}&units=metric&appid=${key}`;
+    const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${cord.lat}&lon=${cord.long}&units=metric&lang=fi&appid=${key}`;
     fetch(url)
         .then(function (rsp) {
             return rsp.json();
@@ -56,11 +56,28 @@ function listaaViikonTiedot(info) {
         day++;
         if(day === 29 && month === 2) {
             day = 1;
-            mmyy = `${paiva.getMonth() + 2}.${paiva.getFullYear()}`
-        }
-        const li = document.createElement('li');
-        const date = document.createTextNode(`${day}.${mmyy} \n ${info.daily[i].feels_like.day.toFixed(0).toString()}`);
+            mmyy = `${paiva.getMonth() + 2}.${paiva.getFullYear()}`;
+        } else if (day === 31 && tasan_paivia.includes(month)) {
+            day = 1
+            mmyy = `${paiva.getMonth() + 2}.${paiva.getFullYear()}`;
+        } else if (day === 32 && pariton_paivia.includes(month)) {
+        day = 1
+        mmyy = `${paiva.getMonth() + 2}.${paiva.getFullYear()}`;
+    }
+    const li = document.createElement('li');
+        const date = document.createTextNode(`${day}.${mmyy}`);
         li.appendChild(date);
+        const icon = document.createElement('img');
+        icon.src = `http://openweathermap.org/img/wn/${info.daily[i].weather[0].icon}@2x.png`
+        li.appendChild(icon);
+        li.appendChild(document.createElement('br'));
+        const strong = document.createElement('strong');
+        strong.appendChild(document.createTextNode('Lämpötila:'));
+        const data = document.createTextNode(` ${info.daily[i].feels_like.day.toFixed(0).toString()} C`);
+        li.appendChild(strong);
+        li.appendChild(data);
+        li.appendChild(document.createElement('br'));
+        li.appendChild(document.createElement('br'));
         lista.appendChild(li);
     }
 }
