@@ -1,3 +1,9 @@
+const modal = document.getElementById('modal');
+const content = document.getElementById('content');
+
+function hideModal(){
+        modal.style.display = "hidden";
+}
 //Function that fetches the Current Weather Data from the OpenWeatherMap API
 function haePaivanTiedot(cord) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${cord.lat}&lon=${cord.long}&appid=${key}&lang=fi&units=metric`
@@ -6,6 +12,7 @@ function haePaivanTiedot(cord) {
             return rsp.json();
         }).then(function (tiedot) {
         listaaPaivanTietoja(tiedot);
+        lisaaDropDown(tiedot);
     });
 }
 
@@ -58,6 +65,7 @@ function listaaViikonTiedot(info) {
         lista.innerHTML = '';
     }
     for (let i = 1; i < info.daily.length; i++) {
+        const day2 = day + 1;
         day++;
         if (day === 29 && month === 2) {
             day = 1;
@@ -83,18 +91,24 @@ function listaaViikonTiedot(info) {
         li.appendChild(data);
         const weather = info.daily[i].weather[0].description;
         li.appendChild(document.createElement('br'));
-        li.appendChild(document.createTextNode(`Päivän yleistilanne: ${weather.charAt(0).toUpperCase() + weather.slice(1)}`));
+        const strong2 = document.createElement('strong');
+        strong2.appendChild(document.createTextNode('Päivän yleistilanne:'));
+        li.appendChild(strong2);
+        li.appendChild(document.createTextNode(` ${weather.charAt(0).toUpperCase() + weather.slice(1)}`));
         li.appendChild(document.createElement('br'));
         const link = document.createElement('a')
         link.setAttribute('href', '#');
         link.textContent = 'Lisätietoja'
         link.addEventListener('click', function (){
-            const modal = document.getElementById('modal');
-            const content = document.getElementById('content');
             modal.style.display = 'block';
             const html = `
-            <p>${day}.${mmyy}</p>
-            <p>${info.daily[i].weather[0].description}</p>
+            <span class="close" onclick="${hideModal()}">&times;</span>            
+            <h1><strong>Päivän tarkemmat tiedot</strong></h1>
+            <p><strong>${day2}.${mmyy}</strong></p>
+            <p><strong>Yleistilanne päivältä:</strong> ${weather.charAt(0).toUpperCase() + weather.slice(1)}</p>
+            <p><strong>Korkein lämpötila päivänä:</strong> ${info.daily[i].temp.max.toFixed(0)}C°</p>
+            <p><strong>Alhaisin lämpötila päivänä:</strong> ${info.daily[i].temp.min.toFixed(0)}C°</p>
+            <p><strong>Miltä lämpötila tuntuu päivälläbn:</strong> ${info.daily[i].feels_like.day.toFixed(0)}C°</p>
             `;
             content.innerHTML = html;
         });

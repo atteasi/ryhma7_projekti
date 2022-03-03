@@ -5,13 +5,17 @@ const key = 'aeeb6bc394d495acdd9b6b0eb06f5e40';
 const map = L.map('map').setView([60.31181787547431, 25.030374526977543], 13);
 //A let that changes value the first time you open the side menu
 let avauksia = 0;
-
+//An array of the countries you have clicked
+let klikatut = [];
+const dropdown = document.getElementsByClassName('dropdown-content');
 const but = document.getElementById('avaa');
-but.addEventListener('click', function () {
+
+but.addEventListener('click', function (){
     infoja.classList.replace('hidden', 'visible');
     kartta.style.width = '70%';
     but.classList.replace('visible', 'hidden');
 });
+
 const infoja = document.querySelector('article');
 
 const kartta = document.querySelector('#map');
@@ -39,6 +43,21 @@ map.on('click', function (click) {
         long: click.latlng.lng.toString(),
         lat: click.latlng.lat.toString()
     }
-    haePaivanTiedot(cord);
+    const clicked = click.latlng;
+    haePaivanTiedot(cord, clicked);
     haeViikonTiedot(cord);
+    const marker = new L.marker(clicked).addTo(map);
+    marker.addEventListener('click', function () {
+        haePaivanTiedot(cord);
+        haeViikonTiedot(cord);
+        infoja.classList.replace('hidden', 'visible');
+        kartta.style.width = '70%';
+        but.classList.replace('visible', 'hidden');
+    })
 });
+
+function lisaaDropDown(info){
+    const click = document.createElement('p');
+    click.innerHTML = info.name;
+    dropdown.innerHTML += click;
+}
