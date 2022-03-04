@@ -9,11 +9,13 @@ let avauksia = 0;
 let klikatut = [];
 const dropdown = document.getElementsByClassName('dropdown-content');
 const but = document.getElementById('avaa');
+const nappi = document.getElementById('nappi');
 
 but.addEventListener('click', function (){
     infoja.classList.replace('hidden', 'visible');
     kartta.style.width = '70%';
     but.classList.replace('visible', 'hidden');
+    nappi.classList.replace('hidden', 'visible');
 });
 
 const infoja = document.querySelector('article');
@@ -53,6 +55,7 @@ map.on('click', function (click) {
         infoja.classList.replace('hidden', 'visible');
         kartta.style.width = '70%';
         but.classList.replace('visible', 'hidden');
+        nappi.classList.replace('hidden', 'visible');
     })
 });
 
