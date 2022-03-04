@@ -108,9 +108,9 @@ function listaaViikonTiedot(info) {
             <h1><strong>Päivän tarkemmat tiedot</strong></h1>
             <p><strong>${day2}.${mmyy}</strong></p>
             <p><strong>Yleistilanne päivältä:</strong> ${weather.charAt(0).toUpperCase() + weather.slice(1)}</p>
-            <p><strong>Korkein lämpötila päivänä:</strong> ${info.daily[i].temp.max.toFixed(0)}C°</p>
-            <p><strong>Alhaisin lämpötila päivänä:</strong> ${info.daily[i].temp.min.toFixed(0)}C°</p>
-            <p><strong>Miltä lämpötila tuntuu päivälläbn:</strong> ${info.daily[i].feels_like.day.toFixed(0)}C°</p>
+            <p><strong>Korkein lämpötila:</strong> ${info.daily[i].temp.max.toFixed(0)}C°</p>
+            <p><strong>Alhaisin lämpötila:</strong> ${info.daily[i].temp.min.toFixed(0)}C°</p>
+            <p><strong>Miltä lämpötila tuntuu:</strong> ${info.daily[i].feels_like.day.toFixed(0)}C°</p>
             `;
             content.innerHTML = html;
         });
