@@ -174,11 +174,11 @@ kuvia.addEventListener('click', function () {
     modal.style.display = 'block';
     content.innerHTML = `
         <p>Yleisiä mainoskuvia: <br></p>
-        <img src=../images/Kuva.jpg style="max-width: 80%" alt="Mainoskuva">
+        <img src=images/Kuva.jpg style="max-width: 80%" alt="Mainoskuva">
         <p><br></p>
-        <img src=../images/kuuma.jpg style="max-width: 80%" alt="Kuva kuumasta">
+        <img src=images/kuuma.jpg style="max-width: 80%" alt="Kuva kuumasta">
         <p><br></p>
-        <img src=../images/kylma.jpg style="max-width: 80%" alt="Kuva Kylmästä" >  
+        <img src=images/kylma.jpg style="max-width: 80%" alt="Kuva Kylmästä" >  
 `
     window.onclick = function (event) {
         if (event.target === modal) {
