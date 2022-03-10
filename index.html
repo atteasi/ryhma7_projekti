@@ -12,11 +12,10 @@
 </head>
 <body>
 <header>
-    <h1>LomaLoikoilijat</h1>
+    <h1>Lomaloikoilijat</h1>
     <nav id="valikko">
         <a href="#" id="ohje">Käyttöohje</a>
         <a href="#" id="kuvia">Mainoskuvia</a>
-        <a href="#" id="kreditteja">Credits</a>
     </nav>
     <button id="avaa" type="button" class="hidden">Avaa Sivuvalikko</button>
     <button id="nappi" type="button" class="hidden">Piilota Sivuvalikko</button>
@@ -24,7 +23,7 @@
     <button id="piilota" type="button" class="hidden">Piilota reitti</button>
 </header>
 <main>
-    <div id="map"></div>
+    <div id="map" class="mapBig"></div>
     <article class="hidden" id="info">
         <h2 id="kaupunki"></h2>
         <p id="lampo"></p>
@@ -39,9 +38,6 @@
         </article>
     </div>
 </main>
-<footer>
-    <h6>Ryhmän 7 Projekti</h6>
-</footer>
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="

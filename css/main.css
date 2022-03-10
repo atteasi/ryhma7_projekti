@@ -4,29 +4,15 @@ body{
     flex-direction: row;
     flex-wrap: wrap;
 }
-#map {
-    width: 100%;
-    height: 85vh;
-    position: absolute;
-}
 header{
-    color: white;
-    background: black;
+    color: #EAF2EF;
+    background: #2E3238;
     padding: 10px;
     margin: 0px;
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
-footer{
-    font-size: 30px;
-    text-align: center;
-    margin-top: 0px;
-    padding: 0px;
-    width: 100%;
-    position: absolute;
-    bottom: 0px;
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 .hidden{
      display: none;
 }
@@ -38,10 +24,11 @@ footer{
     position: absolute;
     font-family: Arial, Helvetica, sans-serif;
     width: 30%;
-    background: lightpink;
+    background: #FBDC9D;
     max-height: 85vh;
     overflow: auto;
     right: 0px;
+    z-index: 10;
 }
 main{
     display: flex;
@@ -105,41 +92,62 @@ li{
     line-height: 0.3em;
     margin-bottom: 2em;
 }
-/*Modal setup is */
+/*Modal setup is taken from W3School*/
 .modal{
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 400; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 400;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.5em;
+    z-index: 501;
 }
 
 @media only screen and (max-width: 1400px) {
 
     #info{
-        display: block;
         width: 100%;
+        height: 33%;
+        bottom: 0px;
 
     }
-    map{
-        width: 100%
+    .mapBigOpen{
+        width: 100% !important;
+        height: 67%
     }
 }
 #valikko{
-
+    position: absolute;
+    top: 80px;
+    left: 8px;
+}
+#valikko a{
+    color: #fefefe;
+    margin: 10px;
+}
+.mapBig{
+    width: 99.2%;
+    height: 85vh;
+    position: absolute;
+    z-index: 9;
+}
+.mapBigOpen{
+    width: 70%;
+    height: 85vh;
+    position: absolute;
+    z-index: 9;
 }

@@ -1,14 +1,26 @@
 'use strict'
+//The closest airport to you
 let closestAirport;
+//The closest airport near your target location
 let toAirport;
+//The route to your destination from the target airport
 let fromAirport;
+//The Flight route
 let polyline;
+//The route to take whilst traveling inside the same country you are in
 let driveRoute;
+//This changes value based on if the target is in the same country or not. Changes to 0 when in the same country, to 1 when not.
 let nearOrFar;
+//Popup for your closest airport
+let popupClose;
+//Popup for the target airport
+let popupTargetAirPort;
+//The function that starts the progress of printing flight data
 lentoTietoNappi.addEventListener('click', function () {
     if(route === 0) {
         route++;
     }
+    //Fetches the closest airport from an API
     const url = `https://aerodatabox.p.rapidapi.com/airports/search/location/${toCoords.lat}/${toCoords.lon}/km/1000/1?withFlightInfoOnly=false`;
     fetch(url, {
         "method": "GET",
@@ -23,10 +35,11 @@ lentoTietoNappi.addEventListener('click', function () {
         piirraLento(tiedot);
     })
 })
+//The function that displays the route to your destination
 function piirraLento(info){
-    map.setZoom(3);
     lentoTietoNappi.classList.replace('visible', 'hidden');
     clearRoute.classList.replace('hidden', 'visible');
+    //The coordinates of the target airport
     const airportCoords = {
         lat: info.items[0].location.lat,
         lon: info.items[0].location.lon,
@@ -73,9 +86,11 @@ function piirraLento(info){
             fitSelectedRoutes: false,
             addWayPoints: false,
         }).addTo(map);
+        popupClose = L.popup().setLatLng([closestAirport.lat, closestAirport.lon]).setContent('Sijaintiasi lähin lentökenttä').addTo(map);
+        popupTargetAirPort = L.popup().setLatLng([airportCoords.lat, airportCoords.lon]).setContent('Kohteen lähin lentökenttä').addTo(map);
     }
 }
-
+//Function to get your closest airports coordinates
 function myAirport(){
     const url = `https://aerodatabox.p.rapidapi.com/airports/search/location/${myCoords.lat}/${myCoords.lon}/km/1000/1?withFlightInfoOnly=false`;
     fetch(url, {        "method": "GET",
@@ -88,6 +103,7 @@ function myAirport(){
 
             return rsp.json();
         }).then(function (tiedot) {
+            //The coordinates of your closest airport
         closestAirport = {
             lat: tiedot.items[0].location.lat,
             lon: tiedot.items[0].location.lon,
@@ -95,7 +111,7 @@ function myAirport(){
         }
     })
 }
-
+//Button that clears the route prints from the map
 clearRoute.addEventListener('click', function(){
     lentoTietoNappi.classList.replace('hidden', 'visible');
     if (nearOrFar === 0) {
@@ -105,4 +121,5 @@ clearRoute.addEventListener('click', function(){
         map.removeControl(fromAirport);
         polyline.remove(map);
     }
+    map.closePopup();
 })
