@@ -20,8 +20,6 @@ map.on('drag', function () {
 });
 //The side panel with weather info
 const infoja = document.querySelector('article');
-//The map
-const kartta = document.querySelector('#map');
 //The buttons used for opening and closing the side panel and to show and hide the route on the map
 const but = document.getElementById('avaa');
 const nappi = document.getElementById('nappi');
@@ -176,11 +174,11 @@ kuvia.addEventListener('click', function () {
     modal.style.display = 'block';
     content.innerHTML = `
         <p>Yleisiä mainoskuvia: <br></p>
-        <img src=../images/Kuva.jpg style="max-width: 60%" alt="Mainoskuva">
+        <img src=../images/Kuva.jpg style="max-width: 80%" alt="Mainoskuva">
         <p><br></p>
-        <img src=../images/kuuma.jpg style="max-width: 60%" alt="Kuva kuumasta">
+        <img src=../images/kuuma.jpg style="max-width: 80%" alt="Kuva kuumasta">
         <p><br></p>
-        <img src=../images/kylma.jpg style="max-width: 60%" alt="Kuva Kylmästä" >  
+        <img src=../images/kylma.jpg style="max-width: 80%" alt="Kuva Kylmästä" >  
 `
     window.onclick = function (event) {
         if (event.target === modal) {
